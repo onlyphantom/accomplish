@@ -2,13 +2,12 @@ from flask import (Flask, flash, render_template, redirect, url_for,
 session, request, get_flashed_messages)
 from functools import wraps
 import sqlite3
-
-DATABASE = 'accomplish.db'
+import config
 
 app = Flask(__name__)
-app.config.from_object(__name__)
-
-app.secret_key = 'world class education'
+app.secret_key = config.SECRET_KEY
+def connect_db():
+    return sqlite3.connect(config.DATABASE_NAME)
 
 def login_required(test):
     @wraps(test)
