@@ -1,11 +1,19 @@
 {% extends "template.html" %}
 {% block content %}
     <h1>Login to Accomplish</h1>
-    {% if error %}
-            <p class="error">
+    
+    <div class="col-md-6 col-lg-6 mt-2">
+        {% for message in get_flashed_messages() %}
+            <div class="flash alert alert-success" role="alert"> {{ message }} </div>
+        {% endfor %}  
+        {% if error %}
+            <div class="flash alert alert-warning" role="alert"> 
                 <strong>Error: </strong> {{ error }}
-            </p>
-    {% endif %}
+            </div>
+        {% endif %}
+        
+    </div>
+
     <div class="col-md-6 col-lg-6">
         <form action="" method="POST">
             <div class="form-group">
@@ -21,13 +29,12 @@
             </div>
 
             <p>For a Demo Account, enter "admin" in both the username and password fields</p>
-            <button type="submit" class="btn btn-outline-dark" value="Login">Log in</button>
+            <button type="submit" class="btn btn-info" value="Login">Log in</button>
             
         </form>
 
     </div>
-    
-    
+
 
 {% endblock %}
 

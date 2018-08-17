@@ -1,10 +1,14 @@
-from flask import Flask, flash, render_template, redirect, url_for, session, request
+from flask import (Flask, flash, render_template, redirect, url_for, 
+session, request, get_flashed_messages)
 from functools import wraps
 import sqlite3
 
 DATABASE = 'accomplish.db'
 
 app = Flask(__name__)
+app.config.from_object(__name__)
+
+app.secret_key = 'world class education'
 
 def login_required(test):
     @wraps(test)
@@ -21,6 +25,7 @@ def home():
     return render_template('home.html')
 
 @app.route('/welcome')
+@login_required
 def welcome():
     return render_template('welcome.html')
 
@@ -31,6 +36,7 @@ def log():
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
+            session['logged_in'] = True
             return redirect(url_for('welcome'))
     return render_template('log.html', error=error)
 
@@ -40,7 +46,6 @@ def logout():
     session.pop('logged_in', None)
     flash('Successfully logged out.')
     return redirect(url_for('log'))
-
 
 if __name__ == '__main__':
     app.run(debug=True)
