@@ -1,0 +1,104 @@
+{% extends "template.html" %}
+{% block content %}
+
+<div class="dashboard-page mt-2 col-md-10 offset-md-1">
+    <h1>The Accomplish Board</h2>
+    <a href="/logout" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true">Logout</a>
+
+    <hr>
+    <div class="add-project mt-2">
+        <h3>Create a new task</h3>
+        <form action="{{ url_for('new_task') }}" method="POST" class="new-task">
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="task_name">Describe the Task:</label>
+                    <input type="text" name="task_name" class="form-control">
+                    <small class="text-muted">Keep your task name short and concise. </small>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="priority">Priority</label>
+                    <select name="priority" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                        <label for="scope">Scope</label>
+                        <select name="scope" class="form-control">
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                        </select>
+                </div>
+            </div>
+            
+            <div class="form-inline align-items-center">
+                <div class="form-group">
+                    <label for="due_date">Due Date:</label>
+                    <input type="date" name="due_date" min="2018-08-17" max="2020-12-31" class="form-control mx-sm-4">
+                    
+                </div>
+                
+                <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn-dark">Add a Task</button>
+                </div>
+                
+            </div>
+
+            
+        </form>
+
+
+    </div>
+    <hr>
+    <!--List Open Tasks-->
+    <div class="list-taks">
+        <h3>Open Tasks</h3>
+        <div class="row">
+            {% for task in open_projects %}
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="badge badge-secondary"> {{task.task_priority}} </span> {{task.scope}}</h5>
+                            <p class="card-text">{{task.task_name}} <hr> Due on: {{task.due_date}}</p>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-outline-secondary">Delete</button>
+                                    <button type="button" class="btn btn-success">Mark as Done</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+
+    </div>
+
+    <div class="list-taks mt-4">
+        <h3>Done</h3>
+        <div class="row">
+            {% for task in closed_projects %}
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><span class="badge badge-secondary"> {{task.task_priority}} </span> {{task.scope}}</h5>
+                            <p class="card-text">{{task.task_name}} <hr> {{task.due_date}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+    
+    </div>
+
+
+</div>
+
+
+
+{% endblock %}
+
+
