@@ -68,4 +68,8 @@ def display_info_again(name, age):
 
 display_info_again("Max", 33)
 
+def bg(task_id):
+    lastdigit = task_id%10
+    return('static/img/{}.png'.format(lastdigit))
 
+bg(14)

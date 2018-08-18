@@ -1,0 +1,49 @@
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, .navbar-brand, .nav-item > a {
+    font-family: 'Roboto Condensed';
+    font-weight: 600;
+}
+
+
+.navbar > .md-light {
+    margin-right: 0.5%;
+}
+
+i.material-icons {
+    vertical-align: middle;
+    font-size: 1.2em;
+}
+
+.dashboard-page > h1 {
+    font-size: 2em
+}
+
+.add-project.jumbotron {
+    padding-top: 1.4em;
+}
+
+.jumbotron > h3 {
+    font-size: 2em;
+}
+
+h1>i.material-icons {
+    margin-bottom: 0.5%;
+    margin-right: 0.5%;
+}
+
+.img-personal {
+    -webkit-filter: sepia(40%) invert(100%);
+    filter: sepia(40%) invert(100%);
+}
+
+.card-personal > .card-body {
+    background: #6c757d;
+    color: white;
+}
+
+.card-work > .card-body {
+    background: #343a40;
+    color: white;
+}
+

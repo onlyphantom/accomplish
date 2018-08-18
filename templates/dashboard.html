@@ -2,12 +2,10 @@
 {% block content %}
 
 <div class="dashboard-page mt-2 col-md-10 offset-md-1">
-    <h1>The Accomplish Board</h2>
-    <a href="/logout" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true">Logout</a>
+    <h1><i class="material-icons">dashboard</i>The Accomplish Board</h1>
 
-    <hr>
-    <div class="add-project mt-2">
-        <h3>Create a new task</h3>
+    <div class="add-project jumbotron">
+        <h3>Create a Task</h3>
         <form action="{{ url_for('new_task') }}" method="POST" class="new-task">
             <div class="form-row">
                 <div class="form-group col-md-8">
@@ -54,7 +52,7 @@
     </div>
 </div>
 
-    <hr>
+    
     <!--List Open Tasks-->
     <div class="list-taks col-md-10 offset-md-1">
         <h3>Open Tasks</h3>
@@ -62,20 +60,24 @@
             {% for task in open_projects %} 
       
                 {% if task.scope == 'personal' %}
-                    <div class="card border-info mt-2" style="min-width: 14rem; max-width: 14rem">
+                    <div class="card card-personal border-dark mt-2" style="min-width: 13rem; max-width: 16rem">
+                    <img class="card-img-top img-personal" src="{{url_for('static', filename='img/')}}{{task.task_id}}.png" alt="Task Background Image">
                 {% else %}
-                    <div class="card border-warning mt-2" style="min-width: 14rem; max-width: 14rem">
+                    <div class="card card-work border-dark mt-2" style="min-width: 13rem; max-width: 18rem">
+                            <img class="card-img-top img-work" src="{{url_for('static', filename='img/')}}{{task.task_id}}.png" alt="Task Background Image">
                 {% endif %}
-                    <img class="card-img-top" src="https://via.placeholder.com/223x140" alt="Card image cap">
-                    <div class="card-body text-dark">
-                        <h5 class="card-title"><span class="badge badge-secondary"> {{task.task_priority}} </span> {{task.scope}}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="badge badge-light"> {{task.task_priority}} </span> {{task.scope}}</h5>
                         <p class="card-text">{{task.task_name}}</p>    
                     </div>
-                    <div class="card-footer bg-transparent border-success">
+                    <div class="card-footer bg-transparent">
                         <small>Due on: {{task.due_date}}</small>
                         <div class="btn-group btn-group-sm mt-2" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-outline-secondary">Delete</button>
-                                    <button type="button" class="btn btn-success">Mark as Done</button>
+                                <a class="btn btn-warning" href=" {{ url_for('delete_task', task_id = task.task_id) }} ">
+                                    <i class="material-icons">delete</i> Delete</a>
+                                <a class="btn btn-dark" href=" {{ url_for('complete_task', task_id = task.task_id) }} ">
+                                        <i class="material-icons">done</i> Mark as Done</a>
+                                
                         </div>
                     </div>
                 </div><!--End .card-->
@@ -88,16 +90,18 @@
 
     <div class="list-taks col-md-10 offset-md-1 mt-4">
         <h3>Done</h3>
-        <div class="card-deck mb-4">
+        <div class="card-columns mb-4">
             {% for task in closed_projects %}
-                <div class="col-sm-3">
-                    <div class="card text-white bg-dark" style="min-width: 14rem; max-width: 14rem">
+                    {% if task.scope == 'personal' %}
+                    <div class="card text-white bg-secondary">
+                    {% else %}
+                    <div class="card text-white bg-dark">
+                    {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title"><span class="badge badge-secondary"> {{task.task_priority}} </span> {{task.scope}}</h5>
-                            <p class="card-text">{{task.task_name}} <hr> {{task.due_date}}</p>
+                            <h5 class="card-title"><span class="badge badge-light"> {{task.task_priority}} </span> {{task.scope}}</h5>
+                            <p class="card-text">{{task.task_name}}</p>
                         </div>
-                    </div>
-                </div>
+                    </div>               
             {% endfor %}
             
         </div>

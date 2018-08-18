@@ -1,5 +1,5 @@
 from flask import (Flask, flash, render_template, redirect, url_for, 
-session, request, get_flashed_messages, g)
+session, request, get_flashed_messages, g, send_from_directory, send_file)
 from functools import wraps
 import sqlite3
 import config
@@ -68,8 +68,26 @@ def new_task():
             INSERT INTO projects (task_name, due_date, task_priority, scope, done)
             VALUES (?,?,?,?, 0)''', [task_name, date, priority, scope])
         g.db.commit()
-        flash('The project was created.')
+        flash('The task was created.')
         return redirect(url_for('dashboard'))
+
+@app.route('/delete/<int:task_id>')
+@login_required
+def delete_task(task_id):
+    g.db.execute('DELETE from projects where id =' + str(task_id))
+    g.db.commit()
+    g.db.close()
+    flash('One task has been deleted.')
+    return redirect(url_for('dashboard'))
+
+@app.route('/complete/<int:task_id>')
+@login_required
+def complete_task(task_id):
+    g.db.execute('UPDATE projects SET done = 1 WHERE id =' + str(task_id))
+    g.db.commit()
+    g.db.close()
+    flash('One task mark as completed')
+    return redirect(url_for('dashboard'))
 
 @app.route('/log', methods=['POST', 'GET'])
 def log():
@@ -88,6 +106,11 @@ def logout():
     session.pop('logged_in', None)
     flash('Successfully logged out.')
     return redirect(url_for('log'))
+
+@app.route('/static/img/<int:task_id>'+'.png')
+def bg(task_id):
+    lastdigit = task_id%10
+    return send_from_directory(app.static_folder, 'img/' + str(lastdigit) + '.png', mimetype='image/png')
 
 if __name__ == '__main__':
     app.run(debug=True)
