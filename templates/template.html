@@ -27,9 +27,9 @@
                 </div>
         </nav>
     </header>
-    <div class="container-fluid">
+    <div class="container-fluid mt-2">
         {% for message in get_flashed_messages() %}
-            <div class="flash alert alert-success" role="alert"> {{ message }} </div>
+            <div class="flash alert alert-info" role="alert"> {{ message }} </div>
         {% endfor %} 
         {% block content %}
     

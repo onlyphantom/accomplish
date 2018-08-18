@@ -56,18 +56,17 @@ def dashboard():
 @app.route('/add', methods=['POST'])
 @login_required
 def new_task():
-    name = request.form['task_name']
+    task_name = request.form['task_name']
     date = request.form['due_date']
-    priority = request.form['task_priority']
+    priority = request.form['priority']
     scope = request.form['scope']
-    if not name or not date or not priority or not scope:
+    if not task_name or not date or not priority or not scope:
         flash('All fields must be completed to create your project. Sam says so.')
-        return redirect(url_for('dashboard.html'))
+        return redirect(url_for('dashboard'))
     else: 
-        g.db.execute("""
-            INSERT INTO projects (name, due_date, task_priority, scope, done)
-            VALUES (%s, %s, %s, %s, 0)
-        """, (name, date, priority, scope))
+        g.db.execute('''
+            INSERT INTO projects (task_name, due_date, task_priority, scope, done)
+            VALUES (?,?,?,?, 0)''', [task_name, date, priority, scope])
         g.db.commit()
         flash('The project was created.')
         return redirect(url_for('dashboard'))
