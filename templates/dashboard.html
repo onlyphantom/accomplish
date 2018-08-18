@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="dashboard-page mt-2 col-md-10 offset-md-1">
-    <h1><i class="material-icons">dashboard</i>The Accomplish Board</h1>
+    <h1 class="text-light"><i class="material-icons">dashboard</i>The Accomplish Board</h1>
 
     <div class="add-project jumbotron">
         <h3>Create a Task</h3>
@@ -55,7 +55,7 @@
     
     <!--List Open Tasks-->
     <div class="list-taks col-md-10 offset-md-1">
-        <h3>Open Tasks</h3>
+        <h3 class="text-light">Open Tasks</h3>
         <div class="card-deck">
             {% for task in open_projects %} 
       
@@ -89,7 +89,7 @@
     </div>
 
     <div class="list-taks col-md-10 offset-md-1 mt-4">
-        <h3>Done</h3>
+        <h3 class="text-light">Done</h3>
         <div class="card-columns mb-4">
             {% for task in closed_projects %}
                     {% if task.scope == 'personal' %}

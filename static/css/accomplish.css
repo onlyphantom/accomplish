@@ -1,10 +1,14 @@
+body {
+    background: url('/static/img/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, .navbar-brand, .nav-item > a {
     font-family: 'Roboto Condensed';
     font-weight: 600;
 }
-
 
 .navbar > .md-light {
     margin-right: 0.5%;
@@ -16,15 +20,20 @@ i.material-icons {
 }
 
 .dashboard-page > h1 {
-    font-size: 2em
+    font-size: 2em;
 }
 
 .add-project.jumbotron {
     padding-top: 1.4em;
+    padding-bottom: 1.8em;
 }
 
 .jumbotron > h3 {
     font-size: 2em;
+}
+
+h2.display-4 {
+    font-weight: 600;
 }
 
 h1>i.material-icons {
@@ -47,3 +56,4 @@ h1>i.material-icons {
     color: white;
 }
 
+/* Home Page Styles */

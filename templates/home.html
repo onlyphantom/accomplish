@@ -1,13 +1,29 @@
 {% extends "template.html" %}
 {% block content %}
+<div class="dashboard-page mt-2 col-md-10 offset-md-1">
     <div class="jumbotron mt-2">
-        <h2 class="display-4">Welcome to Accomplish!</h2>
+        <h2 class="display-4">Welcome to Accomplish</h2>
         <hr class="my-4">
-        <p class="lead"><p>Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh risus, a scelerisque purus. Ut vel arcu ac tortor adipiscing hendrerit vel sed massa. Fusce sem libero, lacinia vulputate interdum non, porttitor non quam. Aliquam sed felis ligula. Duis non nulla magna.  </p></p>
-
-        <p class="lead"><a class="btn btn-info btn-lg" href="/log">Log In</a></p>
+        <div class="row">
+            <div class="col-sm-4">
+                <p class="lead"><p>Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh risus, a scelerisque purus. Ut vel arcu ac tortor adipiscing hendrerit vel sed massa. Fusce sem libero, lacinia vulputate interdum non, porttitor non quam. Aliquam sed felis ligula. Duis non nulla magna.  </p></p>
+                <hr>
+                <dl>
+                    <dt>Description lists</dt>
+                    <dd>A description list is perfect for defining terms.</dd>
+                    <dt>Euismod</dt>
+                    <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem.</dd>
+                    <dt>Euismod</dt>
+                    <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                </dl>
+                <p class="lead"><a class="btn btn-dark btn-lg" href="/log">Login to Demo</a></p>
+            </div>
+            <div class="col-sm-8">
+                    <img class="banner img-thumbnail img-fluid float-right mb-2" src="{{url_for('static', filename='img/accomplish.png' )}}" alt="">
+            </div>
+        </div>
     </div>
-
+</div>
 {% endblock %}
 
 
