@@ -1,8 +1,8 @@
 {% extends "template.html" %}
 {% block content %}
-    <h1>Login to Accomplish</h1>
     
-    <div class="col-md-6 col-lg-6 mt-2">
+    <div class="col-md-5 col-lg-5 mt-5 offset-md-2">
+        <h1 class="text-light">Login to Accomplish</h1>
         {% for message in get_flashed_messages() %}
             <div class="flash alert alert-info" role="alert"> {{ message }} </div>
         {% endfor %}  
@@ -14,21 +14,21 @@
         
     </div>
 
-    <div class="col-md-6 col-lg-6">
+    <div class="col-md-5 col-lg-5 offset-md-2">
         <form action="" method="POST">
             <div class="form-group">
-                <label for="username">Username:</label>
+                <label for="username" class="text-light">Username:</label>
                 <input type="text" class="form-control" name="username" placeholder="Your Username">
             </div>
             <div class="form-group">
-                <label for="Password">Password:</label>
+                <label for="Password" class="text-light">Password:</label>
                 <input type="password" class="form-control" name="password">
-                <small id="passwordHelpBlock" class="form-text text-muted">
+                <small id="passwordHelpBlock" class="form-text text-light">
                     Your password must be 5-20 characters long, and must not contain spaces, special characters, or emoji.
                 </small>
             </div>
 
-            <p>For a Demo Account, enter "admin" in both the username and password fields</p>
+            <p class="text-light">For a Demo Account, enter "admin" in both the username and password fields</p>
             <button type="submit" class="btn btn-info" value="Login">Log in</button>
             
         </form>
